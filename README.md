@@ -32,6 +32,7 @@ We made 5 kinds of label for classifying.
 |2|Leaning|
 |3|Sleeping|
 |4|Resting chin|
+
 Our model's task is choosing which posture is for given photo.
 For it, we are using very simple model now.(it can be changed.)
 ![AI_model](images/ai_constructure.png)
