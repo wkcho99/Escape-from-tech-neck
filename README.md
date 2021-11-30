@@ -18,7 +18,7 @@ By using this app, we expect that you will be able to maintain a better posture 
 
 
 # Abstract
-  ![Flowchart](images/Flowchart.png)
+  ![Flowchart](images/flowchart_hci.png)
 Our application's flow chart is like this.
 (SOME EXPLANATION WILL BE ADDED)
   
@@ -41,3 +41,7 @@ We use about 1000 pieces of our own generated data. For it, we used `/data/recor
 Our model's performance is like this.(Loss & Accuracy)
 ![LOSS](images/LOSS.png)
 ![ACU](images/ACU.png)
+# Frontend
+WILL BE ADDED
+# Backend
+WILL BE ADDED
