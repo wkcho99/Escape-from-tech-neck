@@ -1,0 +1,57 @@
+.step1_2{
+    background-color: #FFFFFF;
+    color: #09AA7C;
+    width: 219px;
+    height: 114px;
+    text-align: center;
+    line-height: 114px;
+    border-bottom: 1px solid #09AA7C;
+}
+.step2_2{
+    background-color: #FFFFFF;
+    color: #09AA7C;
+    width: 219px;
+    height: 114px;
+    text-align: center;
+    line-height: 114px;
+    border-bottom: 1px solid #09AA7C;
+}
+.step3_2{
+    background-color: #09AA7C;
+    color: #FFFFFF;
+    width: 219px;
+    height: 114px;
+    text-align: center;
+    line-height: 114px;
+    border-bottom: 1px solid #09AA7C;
+}
+
+.step3Todo{
+    width: 650px;
+    height: 590px;
+    position:absolute;
+    margin-left: 605px;
+    margin-top: -660px;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    justify-content: space-evenly;
+}
+.cam{
+    background-color: #C4C4C4;
+    width: 650px;
+    height: 520px;
+}
+.connect{
+    border: none;
+    outline: none;
+    width : 179px;
+    height : 51px;
+    position: absolute;
+    background-color: #09AA7C;
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 18px;
+    overflow: hidden;
+    margin-left: 214px;
+}
