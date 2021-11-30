@@ -19,8 +19,7 @@ By using this app, we expect that you will be able to maintain a better posture 
 
 # Abstract
   ![Flowchart](images/flowchart_hci.png)
-Our application's flow chart is like this.
-(SOME EXPLANATION WILL BE ADDED)
+Our application's flow chart is like this. First, the user supplies the frontend with a photo of themselves, which is done automatically every 5 seconds. Then The frontend sends this picture to the backend, which then inputs it into our AI model. Our AI model then calculates the users posture, and sends this result to the backend, which forwards it to the frontend. Finally, the frontend informs the user, if they have a bad posture. 
   
 # AI
 Input data for model is photos of people's postures and labels for it.
@@ -45,4 +44,4 @@ Our model's performance is like this.(Loss & Accuracy)
 # Frontend
 WILL BE ADDED
 # Backend
-WILL BE ADDED
+Our backend uses the microframework Flask, since our product does not require a lot of information exchange. Only a photo, and a result of the AI model with said photo as input, is exchanged. This is described in more detail at the [Abstract chapter](#abstract) It is extremely lightweight, which suits our needs. It doesn't even include a Database Abstraction Layer (DAL) in our project, since we don't use store any data. 
