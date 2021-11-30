@@ -1,0 +1,46 @@
+
+.step1_1{
+    background-color: #FFFFFF;
+    color: #09AA7C;
+    width: 219px;
+    height: 114px;
+    text-align: center;
+    line-height: 114px;
+    border-bottom: 1px solid #09AA7C;
+}
+.step2_1{
+    width: 219px;
+    height: 114px;
+    text-align: center;
+    line-height: 114px;
+    background-color: #09AA7C;
+    color: #FFFFFF;
+    border-bottom: 1px solid #09AA7C;
+}
+.step3_1{
+    background-color: #FFFFFF;
+    color: #09AA7C;
+    width: 219px;
+    height: 114px;
+    text-align: center;
+    line-height: 114px;
+    border-bottom: 1px solid #09AA7C;
+}
+.step2Todo{
+    border: 1px solid #09AA7C;
+    width: 549px;
+    height: 541px;
+    position:absolute;
+    margin-left: 605px;
+    margin-top: -627px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 20px;
+}
+.sound{
+    margin-left: 50px;
+}
+.pop-up{
+    margin-left: 50px;
+}
