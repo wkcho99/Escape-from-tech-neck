@@ -35,14 +35,14 @@ const Classifier = () => {
           body: formData,
         });
 
-        setResult(response.status)
+        // setResult(response.status)
 
-        // if (response.status === 200) {
-        //   const text = await response.text();
-        //   setResult(text);
-        // } else {
-        //   setResult("Error from API. ");
-        // }
+        if (response.status === 200) {
+          const text = await response.text();
+          setResult(text);
+        } else {
+          setResult("Error from API. ");
+        }
       }
     }, 1000);
     return () => clearInterval(interval);
