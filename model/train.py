@@ -6,11 +6,11 @@ import torch.optim as optim
 import numpy as np
 import matplotlib.pyplot as plt
 
-TRAIN_DATA_DIR = "/home/shinebobo/CSED402/model/Image"
-TRAIN_LABEL_DIR = "/home/shinebobo/CSED402/model/train.csv"
+TRAIN_DATA_DIR = "Image"
+TRAIN_LABEL_DIR = "train.csv"
 IMG_WIDTH = 80
 IMG_HEIGHT = 60
-EPOCH = 50
+EPOCH = 200
 
 train_data = PoseDataset(csv_file=TRAIN_LABEL_DIR, img_dir=TRAIN_DATA_DIR, input_width=IMG_WIDTH, input_height=IMG_HEIGHT)
 
@@ -53,9 +53,12 @@ for epoch in range(EPOCH):
     print("Epoch: " + str(epoch + 1))
     print("Cls Average training loss: " + str(running_loss.item() / train_total))
     print("Accuracy: ", str(correct / iter) )
-    torch.save(model.state_dict(), 'model_weights.pth') 
+    
     loss_list.append(running_loss.item() / (train_total))
     acu_list.append(correct / iter)
+
+    if (epoch+1)% 50 == 0:
+        torch.save(model.state_dict(), 'model_weights.pth')
     
 
 plt.plot(range(EPOCH), loss_list)

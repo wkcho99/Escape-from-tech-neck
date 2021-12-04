@@ -19,7 +19,7 @@ const Step2 = () => {
                 <input type = "checkbox" name="type" value="Pop-up"/> Pop-up 
                 </div>
             <Link to = "/start/step3">
-                <input type = "button" className = "next" value="Start Tracking"/>
+                <input type = "button" className = "next" value="Next >>"/>
             </Link>
             </div>
         </div>

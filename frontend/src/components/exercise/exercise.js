@@ -4,18 +4,27 @@ import "./exercise.css"
 const Exercise = () => {
     return (
         //<Router>
-        <div className="main">
+        <div className="exercise">
             <div className = "sideMenu">
-            <div className = "step1"> STEP1</div>
-            <div className = "step2"> STEP1</div>
-            <div className = "step3"> STEP1</div>
+            <Link to = "/exercise">
+            <div className = "Neck"> 
+                Neck   
             </div>
-            <Link to = "/start">
-            <button className = "startButton"> START</button>
             </Link>
-            STEP 1. Choose Options
-            <div className = "step1Todo">
-            
+            <Link to = "/exercise/back">
+            <div className = "Back"> 
+                Back
+            </div>
+            </Link>
+            <Link to = "/exercise/wakeup">
+            <div className = "Wakeup"> 
+                Wakeup
+            </div>
+            </Link>
+            </div>
+            <div className = "videos">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/FMOISIlhLEY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/3aTPapvWpKs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
         </div>
         //</Router>

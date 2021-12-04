@@ -8,7 +8,7 @@ import numpy as np
 import torchsummary
 
 TEST_DATA_DIR = "/home/shinebobo/CSED402/model/Image"
-TEST_LABEL_DIR = "/home/shinebobo/CSED402/model/test.csv"
+TEST_LABEL_DIR = "test.csv"
 IMG_WIDTH = 80
 IMG_HEIGHT = 60
 
@@ -23,9 +23,9 @@ test_loss = 0
 correct = 0
 test_total = 0
 
-model.load_state_dict(torch.load('/home/shinebobo/CSED402/model/model_weights.pth'))
+model.load_state_dict(torch.load('model_weights.pth'))
 model.eval()
-# torchsummary.summary(model, (3, 80, 60),device='cpu')
+torchsummary.summary(model, (3, 80, 60),device='cpu')
 with torch.no_grad():
     for i, (data, label) in enumerate(test_loader, 0):
         output = model(data.float())

@@ -3,6 +3,7 @@ import {Link, BrowserRouter as Router} from 'react-router-dom';
 import TestOverlay from "../camera/camera";
 import "./step3.css"
 const Step3 = () => {
+    
     return (
         //<Router>
         <div className="start">
@@ -16,9 +17,6 @@ const Step3 = () => {
             <div className = "cam">
             <TestOverlay/>
             </div>
-            <Link to = "/start">
-                <input type = "button" className = "connect" value="Connect >>"/>
-            </Link>
             </div>
         </div>
         
