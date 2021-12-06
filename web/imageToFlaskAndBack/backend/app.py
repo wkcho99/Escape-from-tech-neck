@@ -6,26 +6,20 @@ import json
 import sys
 import numpy as np
 from flask import Flask, render_template, request
-from reverseProxy import proxyRequest
-from classifier import classifyImage
-import cv2
-
+from PIL import Image
 import torch.nn as nn
 import torch
 from torchvision import models
-
 from model import Temp_model
 
-from PIL import Image
 
-# sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 # from predict import get_prediction, transform_image
 
 MODE = os.getenv('FLASK_ENV')
 DEV_SERVER_URL = 'http://localhost:3000/'
 
 model = Temp_model()
-model.load_state_dict(torch.load('/home/bastian_preisel/gitProjects/Escape-from-tech-neck/model/model_weights.pth'), strict=False)
+model.load_state_dict(torch.load('model_weights.pth'), strict=False)
 model.eval()
 # logging.basicConfig(level=logging.DEBUG)
 
@@ -33,12 +27,21 @@ app = Flask(__name__)
 
 # Transform input into the form our model expects
 def transform_image(infile, side):
-    # image = Image.open(infile)
-    image = np.resize(infile, (3,60,80))
+    image = Image.open(infile)
+    image = image.resize((80, 60))
+
+    # if image is from left sideview, image would be fliped(not used now)
     # if side is True:
-    #         image = image.transpose(Image.FL)
-    # image = np.transpose(image, (2, 0, 1))                               
-    return torch.Tensor(image)
+    #         image = image.transpose(Image.FLIP_LEFT_RIGHT)
+
+    imgarr = np.array(image)
+    image = np.transpose(image, (2, 0, 1))
+
+    # remove transparency 
+    image = image[:3,:,:]
+    image = torch.from_numpy(image)
+    image = image.unsqueeze(0)                        
+    return image
 
 # Get a prediction
 def get_prediction(input_tensor):
@@ -72,13 +75,8 @@ def index(path=''):
 def classify():
     if (request.files['image']): 
         file = request.files['image']
-        npimg = np.fromfile(file, np.uint8)
-        file = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
-        # save(file)
         input_tensor = transform_image(file, True)
-        prediction_idx = get_prediction(input_tensor)
-        # result = classifyImage(file)
-        # result = "test"
-        
-        #return str(input_tensor)
+        prediction_idx = get_prediction(input_tensor.float())
+        print(prediction_idx)
+
         return str(prediction_idx)
