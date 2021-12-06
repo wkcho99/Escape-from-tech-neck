@@ -19,7 +19,7 @@ MODE = os.getenv('FLASK_ENV')
 DEV_SERVER_URL = 'http://localhost:3000/'
 
 model = Temp_model()
-model.load_state_dict(torch.load('model_weights.pth'), strict=False)
+model.load_state_dict(torch.load('/home/bastian_preisel/gitProjects/Escape-from-tech-neck/web/imageToFlaskAndBack/backend/model_weights.pth'), strict=False)
 model.eval()
 # logging.basicConfig(level=logging.DEBUG)
 

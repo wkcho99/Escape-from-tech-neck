@@ -7,6 +7,7 @@ const Classifier = () => {
 
   const [result, setResult] = useState("");
 
+  // Get camera feed
   useEffect(() => {
     async function getCameraStream() {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -22,6 +23,7 @@ const Classifier = () => {
     getCameraStream();
   }, []);
   
+  // Send iage to API
   useEffect(() => {
     const interval = setInterval(async () => {
       captureImageFromCamera();

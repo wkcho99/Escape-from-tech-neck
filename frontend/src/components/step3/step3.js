@@ -8,15 +8,15 @@ const Step3 = () => {
         //<Router>
         <div className="start">
             <div className = "sideMenu">
-            <div className = "step1_2"> STEP1</div>
-            <div className = "step2_2"> STEP2</div>
-            <div className = "step3_2"> STEP3</div>
+              <div className = "step1_2"> STEP1</div>
+              <div className = "step2_2"> STEP2</div>
+              <div className = "step3_2"> STEP3</div>
             </div>
             <div className = "chooseOp">STEP 3. Connect the Camera</div>
             <div className = "step3Todo">
-            <div className = "cam">
-            <TestOverlay/>
-            </div>
+              <div className = "cam">
+                <TestOverlay/>
+              </div>
             </div>
         </div>
         
