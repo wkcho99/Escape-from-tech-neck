@@ -1,13 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Webcam from "react-webcam";
 import "./camera.css"
-const WebcamComponent = () => <Webcam />;
-const videoConstraints = {
-    width: 650,
-    height: 520,
-    facingMode: "user"
-  };
-  let playAlert;
+
   let toggle = "stop";
 
   const TestOverlay = () => {
@@ -39,27 +33,31 @@ const videoConstraints = {
     // Send iage to API
     useEffect(() => {
       const interval = setInterval(async () => {
-        captureImageFromCamera();
+        if(toggle == "stop"){
+          return () => clearInterval(interval);
+        } else {
+          captureImageFromCamera();
 
-        if (imageRef.current) {
-          const formData = new FormData();
-          formData.append('image', imageRef.current);
+          if (imageRef.current) {
+            const formData = new FormData();
+            formData.append('image', imageRef.current);
 
-          const response = await fetch('/classify', {
-            method: "POST",
-            body: formData,
-          });
+            const response = await fetch('/classify', {
+              method: "POST",
+              body: formData,
+            });
 
-          // setResult(response.status)
+            // setResult(response.status)
 
-          if (response.status === 200) {
-            const text = await response.text();
-            setResult(text);
-          } else {
-            setResult("Error from API. ");
+            if (response.status === 200) {
+              const text = await response.text();
+              setResult(text);
+            } else {
+              setResult("Error from API. ");
+            }
           }
         }
-      }, 1000);
+      }, 1000); // <- interval in ms
       return () => clearInterval(interval);
     }, []);
 
@@ -83,55 +81,29 @@ const videoConstraints = {
       })
     };
 
-    const capture = React.useCallback(() => {
-      const imageSrc = webcamRef.current.getScreenshot();
-      setImgSrc(imageSrc);
-    }, [webcamRef, setImgSrc]);
-    console.log("play",playAlert);
-    const func1 = () =>{
-        capture();
-    }
-
     const toggleAlert=function(){
       if(toggle=="stop") {
-        startAlert();
         toggle = "start";
         setButtonName("stop tracking");
       }
       else if(toggle=="start") {
-        stopAlert();
         toggle = "stop";
         setButtonName("start tracking");
       }
     }
-
-    const startAlert = function() {
-        playAlert = setInterval(func1, 10000);
-        console.log("start",playAlert);
-      };
-
-    const stopAlert = function() {
-        console.log("stop",playAlert);
-        clearInterval(playAlert);
-      };
   
     return (
       <>
-        <Webcam
-          audio={false}
-          ref={webcamRef}
-          videoConstraints = {videoConstraints}
-          screenshotFormat="image/jpeg"
-        />
-        <div className ="startTrack">
-        <button className="startBut" onClick={toggleAlert}>
-            {buttonName}
-        </button>
         <main>
-        <video ref={videoRef} onCanPlay={() => playCameraStream()} id="video" />
-        <canvas ref={canvasRef} hidden></canvas>
-        <p>Currently seeing: {result}</p>
-      </main>
+          <video ref={videoRef} onCanPlay={() => playCameraStream()} id="video" />
+          <canvas ref={canvasRef} hidden></canvas>
+          <p>Currently seeing: {result}</p>
+        </main>
+        <div className ="startTrack">
+          <button className="startBut" onClick={toggleAlert}>
+              {buttonName}
+          </button>
+          
         </div>
         {imgSrc && (
           <img
