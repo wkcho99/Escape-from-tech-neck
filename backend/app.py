@@ -1,11 +1,11 @@
 # backend/app.py
-
+from __future__ import print_function # In python 2.7
 import os
 import io
 import json
 import sys
 import numpy as np
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from PIL import Image
 import torch.nn as nn
 import torch
@@ -63,6 +63,9 @@ def render_prediction(prediction_idx):
 
     return prediction_idx, class_name
 
+
+app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
+
 @app.route('/')
 @app.route('/<path:path>')
 def index(path=''):
@@ -77,6 +80,15 @@ def classify():
         file = request.files['image']
         input_tensor = transform_image(file, True)
         prediction_idx = get_prediction(input_tensor.float())
-        print(prediction_idx)
-
+        sensitivity = session.get('sensitivity', None)
+        position = session.get('position', None)
         return str(prediction_idx)
+
+@app.route('/options', methods=['POST'])
+def getOptions():
+  sensitivity = request.json['sensitivity']
+  position = request.json['position']
+  session['position'] = position
+  session['sensitivity'] = sensitivity
+  # print(request.json['position'], file=sys.stderr)
+  return "sample text"

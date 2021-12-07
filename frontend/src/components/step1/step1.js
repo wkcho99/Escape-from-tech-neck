@@ -2,47 +2,41 @@ import React, { useState } from "react";
 import {Link, BrowserRouter as Router} from 'react-router-dom';
 import "./step1.css"
 const Step1 = () => {
-  const [sensitivity, setSensitivity] = useState('')
-  const [position, setPosition] = useState('')
+  const [buttonName,setButtonName] = useState("next >>");
   var sensitivityRadio = document.getElementsByName('sensitivity');
   var positionRadio = document.getElementsByName('position');
   var sensitivityChoice = ""
   var positionChoice = ""
-  var state = {sensitivityChoice: "",
-               positionChoice: ""};
 
-  function getValuesFromUser() {
+  const getValuesFromUser = function() {
     for (var i = 0; i < sensitivityRadio.length; i++) {       
         if (sensitivityRadio[i].checked) {
             sensitivityChoice = sensitivityRadio[i].value;
             break;
         }
     }
-    for (var i = 0; i < positionRadio.length; i++) {       
-      if (positionRadio[i].checked) {
-        positionChoice = positionRadio[i].value;
+    for (var j = 0; j < positionRadio.length; j++) {       
+      if (positionRadio[j].checked) {
+        positionChoice = positionRadio[j].value;
           break;
       }
     }
-  }
-
-  const sendOptions = (body) => {
-    return fetch(`http://localhost:5000/options`,{
-        'method':'POST',
-         headers : {
-        'Content-Type':'application/json'
-    },
-    body:JSON.stringify(body)
+    fetch( '/options', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }, 
+      method: 'POST',
+      body: {
+        "sensitivityChoice": sensitivityChoice,
+        "position": positionChoice
+      },
+      body: JSON.stringify({ "sensitivity": sensitivityChoice,
+                             "position": positionChoice })
     })
-      // .then(response => response.json())
-      // .catch(error => console.log(error))
+    .then(response => response.json())
+    .catch(error => console.log(error));
   }
-
-  // const insertArticle = () =>{
-  //   APIService.sendOptions({title,body})
-  //   .then((response) => props.insertedArticle(response))
-  //   .catch(error => console.log('error',error))
-  // }
 
     return (
         //<Router>
@@ -79,13 +73,14 @@ const Step1 = () => {
                 </div> 
                 </div>
             </div>
-            {/* <Link to = "/start/step2"> */}
-                <input type = "button" className = "next" value="Next >>" onclick="getValuesFromUser()"/>
-            {/* </Link> */}
+            <Link to = "/start/step2">
+              <button className="startBut" onClick={getValuesFromUser}>
+                {buttonName}
+              </button>
+            </Link>
             </div>
         </div>
         //</Router>
     );
-    
   };
 export default Step1
