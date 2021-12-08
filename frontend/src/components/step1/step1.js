@@ -27,10 +27,6 @@ const Step1 = () => {
         'Content-Type': 'application/json'
       }, 
       method: 'POST',
-      body: {
-        "sensitivityChoice": sensitivityChoice,
-        "position": positionChoice
-      },
       body: JSON.stringify({ "sensitivity": sensitivityChoice,
                              "position": positionChoice })
     })

@@ -57,7 +57,7 @@ import "./camera.css"
             }
           }
         }
-      }, 1000); // <- interval in ms
+      }, 10000); // <- interval in ms
       return () => clearInterval(interval);
     }, []);
 
