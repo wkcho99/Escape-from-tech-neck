@@ -1,19 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 import Webcam from "react-webcam";
 import "./camera.css"
-
-  let toggle = "stop";
-
-  const TestOverlay = () => {
+import sound1_ from '../../sound1.MP3'
+import sound2_ from '../../sound2.MP3'
+import sound3_ from '../../sound3.MP3'
+import sound4_ from '../../sound4.mp3'
+let toggle = "stop";
+  
+  const TestOverlay = (props) => {
+    const sound = props.sound;
+    const alertt = props.alertt;
+    const sound1 = new Audio(sound1_);
+    const sound2 = new Audio(sound2_);
+    const sound3 = new Audio(sound3_);
+    const sound4 = new Audio(sound4_);
+    const [posture, setPosture] = useState(3);
     const [buttonName,setButtonName] = useState("start tracking");
     const webcamRef = React.useRef(null);
-    const [imgSrc, setImgSrc] = React.useState(null);
-
+    const [imgSrc, setImgSrc] = useState(null);
+    console.log("i'm here", sound);
     const [result, setResult] = useState("");
     const canvasRef = useRef();
     const imageRef = useRef();
     const videoRef = useRef();
-    
     // Get camera feed
     useEffect(() => {
       async function getCameraStream() {
@@ -35,7 +44,8 @@ import "./camera.css"
       const interval = setInterval(async () => {
         if(toggle == "stop"){
           return () => clearInterval(interval);
-        } else {
+        } 
+        else {
           captureImageFromCamera();
 
           if (imageRef.current) {
@@ -46,21 +56,74 @@ import "./camera.css"
               method: "POST",
               body: formData,
             });
-
-            // setResult(response.status)
-
             if (response.status === 200) {
+              
               const text = await response.text();
               setResult(text);
+              checkPos(text);
+
             } else {
               setResult("Error from API. ");
             }
           }
         }
-      }, 10000); // <- interval in ms
+      }, 5000); // <- interval in ms
       return () => clearInterval(interval);
     }, []);
-
+    const goAlert = () =>{
+      console.log("goalert", alertt);
+      if(alertt==0) alertSound();
+      else if(alertt == 1) alertPop();
+      else
+      {
+        alertSound();
+        alertPop();
+      }
+    }
+    const checkPos = function(text){
+      console.log("result:",text)
+              //if bad posture 
+              if(text != "0") 
+              {
+                console.log("alert type" , alertt);
+                console.log("sound",sound);
+                console.log("bad",posture);
+                setPosture(3);
+                console.log("bad after",posture);
+              }
+              //else
+              else {
+                setPosture(0);
+              }
+              console.log(posture);
+              //if bad posture for 3 times, alert
+              if(posture >= 3) goAlert();
+    }
+    const alertSound = function(){
+      if(sound === "sound1") {
+        console.log("alert:",sound);
+        sound1.play();
+        sound1.loop = false;
+      }
+      if(sound === "sound2") {
+        console.log("alert:",sound);
+        sound2.play();
+        sound2.loop = false;
+      }
+      if(sound === "sound3") {
+        console.log("alert:",sound);
+        sound3.play();
+        sound3.loop = false;
+      }
+      if(sound === "sound4") {
+        console.log("alert:",sound);
+        sound4.play();
+        sound4.loop = false;
+      }
+    }
+    function alertPop(){
+      alert();
+    }
     const playCameraStream = () => {
       if (videoRef.current) {
         videoRef.current.play();

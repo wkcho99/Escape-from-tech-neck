@@ -3,9 +3,6 @@ import {Link,Route,BrowserRouter as Router} from 'react-router-dom';
 import "./main.css"
 
 const Main = () => {
-    function startClick(e){
-        window.location.href = "/start"
-    }
     return (
         //<Router>
         <div className="main">
@@ -14,7 +11,7 @@ const Main = () => {
             &nbsp;&nbsp;Bad Posture, I’ll Tell You
             </div>
             <Link to = "/start/step1">
-            <button className = "startButton" onclick ={startClick}> START</button>
+            <button className = "startButton"> START</button>
             </Link>
             <div className = "about">
             <div id = "aboutTitle">About ETN</div>

@@ -21,6 +21,7 @@ hr{
     margin-top: 31px;
     font-size: 64px;
     font-weight: 800;
+    
 }
 #subtitle{
     position: absolute;
@@ -43,9 +44,96 @@ hr{
     height: 50px;
     position:absolute;
     margin-left: 90%;
-    margin-top:0px;
+    margin-top: -80px;
     background-size: cover;
     background-color: #FFFFFF;
     background-image: url("/src/settings.png");
+}
+.Modal {
+    width: 50px;
+    height: 50px;
+    top:10%;
+    left:10%;
+    position:absolute;
+    margin-left: 90%;
     margin-top: -80px;
+  overflow: hidden;
+  color : #033A2B;
+}
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rebeccapurple;
+  }
+  .settings{
+    color : #033A2B;
+    font-weight: bolder;
+    font-size: 30px;
+    text-align: center;
+  }
+  .sounds{
+    color : #033A2B;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 24px;
+  }
+  .soundop{
+      color : #000000;
+      font-weight : lighter;
+      font-size: 18px;
+      text-decoration: none;
+  }
+  .break{
+    color : #033A2B;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 24px;
+  }
+  .breakop{
+      color : #000000;
+      font-weight : lighter;
+      font-size: 18px;
+      text-decoration: none;
+  }
+.soundt{
+    margin-top : 5%;
+    margin-bottom: 5%;
+}
+input[type = 'range']{ 
+    -webkit-appearance: none;
+    width:80%;
+    background: transparent; 
+}
+input[type='range']::-webkit-slider-thumb { 
+    -webkit-appearance: none; 
+    background: #09AA7C; 
+    cursor: grab; 
+    height: 14px;
+    width: 14px;
+    border-radius: 14px;
+    box-shadow: none;
+    outline: 0;
+    border: 0;
+    margin-top:-5px;
+}
+input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track 
+  { 
+    width: 100%;
+    height: 3px; 
+    cursor: pointer; 
+    box-shadow: none;
+    background: #09AA7C; 
+    border: none; 
+} 
+input[type=range]:focus::-webkit-slider-runnable-track 
+{ 
+    background: #09AA7C; 
 }

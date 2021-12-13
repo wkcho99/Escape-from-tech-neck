@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import "./help.css"
 
 const Help = () => {
-    function startClick(e){
-        window.location.href = "/start"
-    }
     return (
         //<Router>
             <div className = "help">

@@ -19,7 +19,7 @@ MODE = os.getenv('FLASK_ENV')
 DEV_SERVER_URL = 'http://localhost:3000/'
 
 model = Temp_model()
-model.load_state_dict(torch.load('/home/bastian_preisel/gitProjects/Escape-from-tech-neck/web/imageToFlaskAndBack/backend/model_weights.pth'), strict=False)
+model.load_state_dict(torch.load('/Users/user/etn/Escape-from-tech-neck/web/imageToFlaskAndBack/backend/model_weights.pth'), strict=False)
 model.eval()
 # logging.basicConfig(level=logging.DEBUG)
 
@@ -51,7 +51,7 @@ def transform_image(infile, side):
 def get_prediction(input_tensor):
     outputs = model.forward(input_tensor)  
     pred = outputs.argmax(dim=1, keepdim=True)                                       
-    return pred
+    return pred.item()
 
 # Make the prediction human-readable
 def render_prediction(prediction_idx):

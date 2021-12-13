@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Link, BrowserRouter as Router} from 'react-router-dom';
 import TestOverlay from "../camera/camera";
 import "./step3.css"
-const Step3 = () => {
+const Step3 = (props) => {
     
     return (
         //<Router>
@@ -15,7 +15,7 @@ const Step3 = () => {
             <div className = "chooseOp">STEP 3. Connect the Camera</div>
             <div className = "step3Todo">
               <div className = "cam">
-                <TestOverlay/>
+                <TestOverlay sound = {props.sound} alertt = {props.alertt} />
               </div>
             </div>
         </div>
