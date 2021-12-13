@@ -13,6 +13,7 @@ import { Routes, Route, BrowserRouter as Router} from "react-router-dom";
 import React, { useState } from "react";
 function App() {
   const [sound, setSound] = useState("sound1");
+  const [volume,setVolume] = useState(50);
   const [alertt, setAlertt] = useState(0);
   const [posture0, setPosture0] = useState(0);
   const [posture1, setPosture1] = useState(0);
@@ -22,17 +23,17 @@ function App() {
   return (
   <Router>
     <div className="App">
-      <Header sound = {sound} setSound = {setSound}/>
+      <Header sound = {sound} setSound = {setSound} volume = {volume} setVolume = {setVolume}/>
       <Routes>
       <Route path="/" element = {<Main/>} />
       <Route path="/start/step1" element = {<Step1/>} />
-      <Route path="/start/step2" element = {<Step2 alertt = {alertt} setAlertt = {setAlertt} />} />
-      <Route path="/start/step3" element = {<Step3 sound = {sound} alertt = {alertt} />} />
+      <Route path="/start/step2" element = {<Step2 alertt = {alertt} setAlertt = {setAlertt}/>} />
+      <Route path="/start/step3" element = {<Step3 sound = {sound} volume = {volume} alertt = {alertt} posture0 = {posture0} posture1 = {posture1} posture2 = {posture2} posture3 = {posture3} posture4 = {posture4} setPosture0 = {setPosture0} setPosture1 = {setPosture1} setPosture2 = {setPosture2} setPosture3 = {setPosture3} setPosture4 = {setPosture4}/>} />
       <Route path="/exercise" element = {<Exercise/>} />
       <Route path="/exercise/back" element = {<Back/>} />
       <Route path="/exercise/wakeup" element = {<Wakeup/>} />
       <Route path="/help" element = {<Help/>} />
-      <Route path="/record" element = {<Record/>} />
+      <Route path="/record" element = {<Record posture0 = {posture0} posture1 = {posture1} posture2 = {posture2} posture3 = {posture3} posture4 = {posture4} />} />
       </Routes>
       <Footer />
     </div>

@@ -19,6 +19,8 @@ const Header = (props) => {
     const [modalIsOpen, setIsOpen] = useState(false);
     const sound = props.sound;
     const setSound = props.setSound;
+    const volume = props.volume;
+    const setVolume = props.setVolume;
     function openModal() {
         setIsOpen(true);
       }
@@ -36,6 +38,12 @@ function soundChange(){
     var selval = sel.options[sel.selectedIndex].value;
     console.log(selval);
     setSound(selval);
+}
+function volumeChange(){
+    var ran = document.getElementById("slider");
+    ran.innerHTML = ran.value;
+    console.log(ran.value);
+    setVolume(ran.value);
 }
     return (
         <div className="header">
@@ -67,7 +75,7 @@ function soundChange(){
                             </select>
                         </div>
                         <li>Volume</li>
-                        <input type = "range"></input>
+                        <input type = "range" min = "0" max = "100" id = "slider" onChange={volumeChange}></input>
                         </div>
                     </ul>
                 <div className ="break">

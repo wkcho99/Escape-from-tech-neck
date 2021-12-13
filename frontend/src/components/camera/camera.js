@@ -6,23 +6,110 @@ import sound2_ from '../../sound2.MP3'
 import sound3_ from '../../sound3.MP3'
 import sound4_ from '../../sound4.mp3'
 let toggle = "stop";
-  
+let posture0,posture1,posture2,posture3,posture4;
+let sound, alertt, volume;
   const TestOverlay = (props) => {
-    const sound = props.sound;
-    const alertt = props.alertt;
+    sound = props.sound;
+    alertt = props.alertt;
+    volume = props.volume;
     const sound1 = new Audio(sound1_);
     const sound2 = new Audio(sound2_);
     const sound3 = new Audio(sound3_);
     const sound4 = new Audio(sound4_);
-    const [posture, setPosture] = useState(3);
+    posture0 = props.posture0;
+    posture1 = props.posture1; 
+    posture2 = props.posture2;
+    posture3 = props.posture3;
+    posture4 = props.posture4;
+    const setPosture0 = props.setPosture0;
+    const setPosture1 = props.setPosture1;
+    const setPosture2 = props.setPosture2;
+    const setPosture3 = props.setPosture3;
+    const setPosture4 = props.setPosture4;
+    //const [posture, setPosture] = useState(3);
+    var posture = 0;
     const [buttonName,setButtonName] = useState("start tracking");
     const webcamRef = React.useRef(null);
     const [imgSrc, setImgSrc] = useState(null);
-    console.log("i'm here", sound);
+    console.log("i'm here", sound,volume);
     const [result, setResult] = useState("");
     const canvasRef = useRef();
     const imageRef = useRef();
     const videoRef = useRef();
+    const goAlert = () =>{
+      console.log("goalert", alertt);
+      if(alertt==0) alertSound();
+      else if(alertt == 1) alertPop();
+      else
+      {
+        alertSound();
+        alertPop();
+      }
+      posture = 0;
+    }
+    const checkPos = (text) => {
+      console.log("result:",text)
+              //if bad posture 
+              if(text != "0") 
+              {
+                console.log("alert type" , alertt);
+                console.log("sound",sound);
+                console.log("bad",posture);
+                posture = posture +1;
+                console.log("bad after",posture);
+                if(text == "1") {
+                  setPosture1(posture1+1);
+                  console.log( "posture 1 ", posture1);
+                }
+                else if(text == "2") {
+                  setPosture2(posture2+1);
+                  console.log( "posture 2 ", posture2);
+                }
+                else if(text == "3") {
+                  setPosture3(posture3+1);
+                  console.log( "posture 3 ", posture3);
+                }
+                else if(text == "4") {
+                  setPosture4(posture4+1);
+                  console.log( "posture 4 ", posture4);
+                }
+              }
+              //else
+              else {
+                posture = 0;
+                setPosture0(posture0=>posture0+1);
+                console.log( "posture 0 ", posture0);
+              }
+              console.log(posture);
+              //if bad posture for 3 times, alert
+              if(posture >= 3) goAlert();
+    }
+    const alertSound =()=>{
+      if(sound === "sound1") {
+        console.log("alert:",sound, volume);
+        sound1.volume = volume/100;
+        sound1.play();
+        sound1.loop = false;
+      }
+      if(sound === "sound2") {
+        console.log("alert:",sound, volume);
+        sound2.volume = volume/100;
+        sound2.play();
+        sound2.loop = false;
+      }
+      if(sound === "sound3") {
+        console.log("alert:",sound, volume);
+        sound3.volume = volume/100;
+        sound3.play();
+        sound3.loop = false;
+      }
+      if(sound === "sound4") {
+        console.log("alert:",sound, volume);
+        sound4.volume = volume/100;
+        sound4.play();
+        sound4.loop = false;
+      }
+    }
     // Get camera feed
     useEffect(() => {
       async function getCameraStream() {
@@ -70,57 +157,7 @@ let toggle = "stop";
       }, 5000); // <- interval in ms
       return () => clearInterval(interval);
     }, []);
-    const goAlert = () =>{
-      console.log("goalert", alertt);
-      if(alertt==0) alertSound();
-      else if(alertt == 1) alertPop();
-      else
-      {
-        alertSound();
-        alertPop();
-      }
-    }
-    const checkPos = function(text){
-      console.log("result:",text)
-              //if bad posture 
-              if(text != "0") 
-              {
-                console.log("alert type" , alertt);
-                console.log("sound",sound);
-                console.log("bad",posture);
-                setPosture(3);
-                console.log("bad after",posture);
-              }
-              //else
-              else {
-                setPosture(0);
-              }
-              console.log(posture);
-              //if bad posture for 3 times, alert
-              if(posture >= 3) goAlert();
-    }
-    const alertSound = function(){
-      if(sound === "sound1") {
-        console.log("alert:",sound);
-        sound1.play();
-        sound1.loop = false;
-      }
-      if(sound === "sound2") {
-        console.log("alert:",sound);
-        sound2.play();
-        sound2.loop = false;
-      }
-      if(sound === "sound3") {
-        console.log("alert:",sound);
-        sound3.play();
-        sound3.loop = false;
-      }
-      if(sound === "sound4") {
-        console.log("alert:",sound);
-        sound4.play();
-        sound4.loop = false;
-      }
-    }
+    
     function alertPop(){
       alert();
     }
