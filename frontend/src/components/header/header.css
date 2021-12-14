@@ -137,3 +137,14 @@ input[type=range]:focus::-webkit-slider-runnable-track
 { 
     background: #09AA7C; 
 }
+ .menu a:after {
+    display:block;
+    width:100%;
+    content: '';
+    border-bottom: solid 2px #09AA7C;
+    transform: scaleX(0);
+    transition: transform 250ms ease-in-out;
+ }
+ .menu a:hover:after {
+    transform: scaleX(1);
+ }

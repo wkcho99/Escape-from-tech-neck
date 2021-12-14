@@ -89,26 +89,26 @@ function volumeChange(){
             </Modal>
             </>
             <div className = "menu">
-            <div class = "option">
+            <a>
             <Link to ="/start/step1">
                 Start
             </Link>
-            </div>
-            <div class = "option">
+            </a>
+            <a>
             <Link to ="/exercise">
                 Exercise 
             </Link>
-            </div>
-            <div class = "option">
+            </a>
+            <a>
             <Link to ="/help">
                 Help 
             </Link>
-            </div>
-            <div class = "option">
+            </a>
+            <a>
             <Link to ="/record">
                 Record
             </Link>
-            </div>
+            </a>
             </div>
             <hr/>
         </div>
