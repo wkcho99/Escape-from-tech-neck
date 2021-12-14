@@ -18,7 +18,7 @@ const Step1 = () => {
     for (var j = 0; j < positionRadio.length; j++) {       
       if (positionRadio[j].checked) {
         positionChoice = positionRadio[j].value;
-          break;
+        break;
       }
     }
     fetch( '/options', {
@@ -30,7 +30,6 @@ const Step1 = () => {
       body: JSON.stringify({ "sensitivity": sensitivityChoice,
                              "position": positionChoice })
     })
-    .then(response => response.json())
     .catch(error => console.log(error));
   }
 
