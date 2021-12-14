@@ -15,7 +15,7 @@ const Step3 = (props) => {
             <div className = "chooseOp">STEP 3. Connect the Camera</div>
             <div className = "step3Todo">
               <div className = "cam">
-                <TestOverlay sound = {props.sound} alertt = {props.alertt} />
+                <TestOverlay sound = {props.sound} volume = {props.volume} alertt = {props.alertt} posture0 = {props.posture0} posture1 = {props.posture1} posture2 = {props.posture2} posture3 = {props.posture3} posture4 = {props.posture4} setPosture0 = {props.setPosture0} setPosture1 = {props.setPosture1} setPosture2 = {props.setPosture2} setPosture3 = {props.setPosture3} setPosture4 = {props.setPosture4}/>
               </div>
             </div>
         </div>

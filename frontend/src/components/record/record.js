@@ -14,34 +14,68 @@ const options = {
       mode: 'index',
     },
   };
-  const data = {
-    datasets: [
-        {
-          type: 'bar',
-          label: 'Your Posture Record',
-          backgroundColor: '#09AA7C',
-          data: [
-            { x: 'good', y: 60 },
-            { x: 'tech-neck', y: 20 },
-            { x: 'leaned', y: 10 },
-            { x: 'sleeping', y: 2 },
-            { x: 'resting in chin', y: 3 }
-          ],
-          borderWidth: 0,
-        },
-        
-      ],
-  };
 
-const Record = () => {
+let pro0,pro1,pro2,pro3,pro4;
+const Record = (props) => {
+    var posture0 = props.posture0;
+    var posture1 = props.posture1; 
+    var posture2 = props.posture2;
+    var posture3 = props.posture3;
+    var posture4 = props.posture4;
+    console.log( "posture 0 ", posture0);
+    console.log( "posture 1 ", posture1);
+    
+    const calpro = function(){
+      
+      var tot = posture0 + posture1 + posture2 + posture3 + posture4;
+      console.log( "posture 0 ", posture0);
+    console.log( "posture 1 ", posture1);
+    console.log("total:",tot);
+      pro0 = posture0/tot;
+      pro1 = posture1/tot;
+      pro2 = posture2/tot;
+      pro3 = posture3/tot;
+      pro4 = posture4/tot;
+      console.log(pro0 , pro1, pro2, pro3, pro4);
+      return [pro0 , pro1, pro2, pro3, pro4];
+    }
+    const recomm = function(){
+      var maxvar = Math.max(posture1 , posture2 , posture3 , posture4);
+      if(maxvar == posture1) return "Neck"
+      else if(maxvar == posture2) return "Back"
+      else if(maxvar == posture3) return "Wakeup"
+      else if(maxvar == posture4) return "Neck"
+    }
+    const data = {
+      datasets: [
+          {
+            type: 'bar',
+            label: 'Your Posture Record',
+            backgroundColor: '#09AA7C',
+            data: [
+              { x: 'good', y: calpro()[0] },
+              { x: 'tech-neck', y: calpro()[1] },
+              { x: 'leaned', y: calpro()[2] },
+              { x: 'sleeping', y: calpro()[3] },
+              { x: 'resting in chin', y: calpro()[4] }
+            ],
+            borderWidth: 0,
+          },
+          
+        ],
+    };
   return (
     <div className='chart'>
         Study Time:
         <br/>
         Good Posture:
+        {posture0}
+        times
         <br/>
         Recommended Exercise : 
+        {recomm()}
         <br/>
+        
       <Line type="line" data={data} options={options} legend = {legend}/>
     </div>
   );
