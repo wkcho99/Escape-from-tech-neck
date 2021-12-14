@@ -78,7 +78,7 @@ function breakChange(){
     var sel = document.getElementById("alertBreak");
     var selval = sel.options[sel.selectedIndex].value;
     if(selval === "break0") {
-        setBreaktime(1);
+        setBreaktime(15);
       }
       if(selval === "break1") {
         setBreaktime(30);
