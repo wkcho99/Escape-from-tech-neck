@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {Link, BrowserRouter as Router} from 'react-router-dom';
 import "./step1.css"
 const Step1 = () => {
-  const [buttonName,setButtonName] = useState("next >>");
+  const [buttonName,setButtonName] = useState("Next >>");
   var sensitivityRadio = document.getElementsByName('sensitivity');
   var positionRadio = document.getElementsByName('position');
   var sensitivityChoice = ""
@@ -69,7 +69,7 @@ const Step1 = () => {
                 </div>
             </div>
             <Link to = "/start/step2">
-              <button className="startBut" onClick={getValuesFromUser}>
+              <button className="next" onClick={getValuesFromUser}>
                 {buttonName}
               </button>
             </Link>

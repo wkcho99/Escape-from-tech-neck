@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import "./header.css"
 import {Link,BrowserRouter as Router} from 'react-router-dom';
 import Modal from 'react-modal';
+import sound1_ from '../../sound1.mp3'
+import sound2_ from '../../sound2.MP3'
+import sound3_ from '../../sound3.mp3'
+import sound4_ from '../../sound4.mp3'
 const customStyles = {
     content: {
         width: '18%',
@@ -13,7 +17,10 @@ const customStyles = {
     },
   };
   Modal.setAppElement('#root');
-
+  const sound1 = new Audio(sound1_);
+  const sound2 = new Audio(sound2_);
+  const sound3 = new Audio(sound3_);
+  const sound4 = new Audio(sound4_);
 const Header = (props) => {
     let sub;
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -21,6 +28,8 @@ const Header = (props) => {
     const setSound = props.setSound;
     const volume = props.volume;
     const setVolume = props.setVolume;
+    const breaktime = props.breaktime;
+    const setBreaktime = props.setBreaktime;
     function openModal() {
         setIsOpen(true);
       }
@@ -36,6 +45,26 @@ const Header = (props) => {
 function soundChange(){
     var sel = document.getElementById("alertSound");
     var selval = sel.options[sel.selectedIndex].value;
+    if(selval === "sound1") {
+        sound1.volume = volume/100;
+        sound1.play();
+        sound1.loop = false;
+      }
+      if(selval === "sound2") {
+        sound2.volume = volume/100;
+        sound2.play();
+        sound2.loop = false;
+      }
+      if(selval === "sound3") {
+        sound3.volume = volume/100;
+        sound3.play();
+        sound3.loop = false;
+      }
+      if(selval === "sound4") {
+        sound4.volume = volume/100;
+        sound4.play();
+        sound4.loop = false;
+      }
     console.log(selval);
     setSound(selval);
 }
@@ -44,6 +73,23 @@ function volumeChange(){
     ran.innerHTML = ran.value;
     console.log(ran.value);
     setVolume(ran.value);
+}
+function breakChange(){
+    var sel = document.getElementById("alertBreak");
+    var selval = sel.options[sel.selectedIndex].value;
+    if(selval === "break0") {
+        setBreaktime(1);
+      }
+      if(selval === "break1") {
+        setBreaktime(30);
+      }
+      if(selval === "break2") {
+        setBreaktime(45);
+      }
+      if(selval === "break3") {
+        setBreaktime(60);
+      }
+    console.log(selval);
 }
     return (
         <div className="header">
@@ -84,6 +130,15 @@ function volumeChange(){
                     <ul>
                         <div className="breakop">
                         <li>alarm every</li>
+                        <div className = "breakf">
+                            <select name = "breakt" id="alertBreak" onChange={breakChange}>
+                                <option value="">--set break time--</option>
+                                <option value="break0">every 15 min</option>
+                                <option value="break1">every 30 min</option>
+                                <option value="break2">every 45 min</option>
+                                <option value="break3">every 60 min</option>
+                            </select>
+                        </div>
                         </div>
                     </ul>
             </Modal>

@@ -31,7 +31,7 @@
     height: 590px;
     position:absolute;
     margin-left: 605px;
-    margin-top: -660px;
+    margin-top: -740px;
     display: flex;
     flex-direction: column;
     font-size: 20px;
@@ -39,8 +39,8 @@
 }
 .cam{
     background-color: #C4C4C4;
-    width: 650px;
-    height: 520px;
+    width: 600px;
+    height: 400px;
 }
 .connect{
     border: none;

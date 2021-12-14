@@ -20,20 +20,22 @@ function App() {
   const [posture2, setPosture2] = useState(0);
   const [posture3, setPosture3] = useState(0);
   const [posture4, setPosture4] = useState(0);
+  const [usetime,setUsetime] = useState(0);
+  const [breaktime,setBreaktime] = useState(0);
   return (
   <Router>
     <div className="App">
-      <Header sound = {sound} setSound = {setSound} volume = {volume} setVolume = {setVolume}/>
+      <Header sound = {sound} setSound = {setSound} volume = {volume} setVolume = {setVolume} breaktime = {breaktime} setBreaktime = {setBreaktime}/>
       <Routes>
       <Route path="/" element = {<Main/>} />
       <Route path="/start/step1" element = {<Step1/>} />
       <Route path="/start/step2" element = {<Step2 alertt = {alertt} setAlertt = {setAlertt}/>} />
-      <Route path="/start/step3" element = {<Step3 sound = {sound} volume = {volume} alertt = {alertt} posture0 = {posture0} posture1 = {posture1} posture2 = {posture2} posture3 = {posture3} posture4 = {posture4} setPosture0 = {setPosture0} setPosture1 = {setPosture1} setPosture2 = {setPosture2} setPosture3 = {setPosture3} setPosture4 = {setPosture4}/>} />
+      <Route path="/start/step3" element = {<Step3 breaktime = {breaktime} usetime = {usetime} setUsetime = {setUsetime} sound = {sound} volume = {volume} alertt = {alertt} posture0 = {posture0} posture1 = {posture1} posture2 = {posture2} posture3 = {posture3} posture4 = {posture4} setPosture0 = {setPosture0} setPosture1 = {setPosture1} setPosture2 = {setPosture2} setPosture3 = {setPosture3} setPosture4 = {setPosture4}/>} />
       <Route path="/exercise" element = {<Exercise/>} />
       <Route path="/exercise/back" element = {<Back/>} />
       <Route path="/exercise/wakeup" element = {<Wakeup/>} />
       <Route path="/help" element = {<Help/>} />
-      <Route path="/record" element = {<Record posture0 = {posture0} posture1 = {posture1} posture2 = {posture2} posture3 = {posture3} posture4 = {posture4} />} />
+      <Route path="/record" element = {<Record usetime = {usetime} posture0 = {posture0} posture1 = {posture1} posture2 = {posture2} posture3 = {posture3} posture4 = {posture4} />} />
       </Routes>
       <Footer />
     </div>

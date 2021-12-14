@@ -17,6 +17,7 @@ const options = {
 
 let pro0,pro1,pro2,pro3,pro4;
 const Record = (props) => {
+    var usetime = props.usetime;
     var posture0 = props.posture0;
     var posture1 = props.posture1; 
     var posture2 = props.posture2;
@@ -38,6 +39,12 @@ const Record = (props) => {
       pro4 = posture4/tot;
       console.log(pro0 , pro1, pro2, pro3, pro4);
       return [pro0 , pro1, pro2, pro3, pro4];
+    }
+    const caltime = function(){
+      var hr = parseInt(usetime/3600000);
+      var min = parseInt(usetime/60000);
+      var sec = parseInt(usetime/1000);
+      return hr+" hr "+min+" min "+sec+" sec ";
     }
     const recomm = function(){
       var maxvar = Math.max(posture1 , posture2 , posture3 , posture4);
@@ -66,9 +73,10 @@ const Record = (props) => {
     };
   return (
     <div className='chart'>
-        Study Time:
+        Study Time: 
+        {caltime()}
         <br/>
-        Good Posture:
+        Good Posture: 
         {posture0}
         times
         <br/>
