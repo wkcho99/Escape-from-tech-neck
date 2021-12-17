@@ -13,3 +13,7 @@
 .subhelp{
     font-size: 30px;
 }
+.examples{
+    display : flex;
+    justify-content: space-evenly;
+}
